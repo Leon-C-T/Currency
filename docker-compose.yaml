@@ -1,0 +1,34 @@
+version: '3'
+services:
+    flaskcur:
+        build:
+            context: ./Service_1
+        image: leonct/currency:flaskcur_1
+        ports:
+            - "5000:5000"
+        networks:
+            - currency
+    fiatgen:
+        build:
+            context: ./Service_2
+        image: leonct/currency:fiatgen_1
+        networks:
+            - currency
+    crypgen:
+        build:
+            context: ./Service_3
+        image: leonct/currency:crypgen_1
+        networks:
+            - currency
+    currpair:
+        build:
+            context: ./Service_4
+        image: leonct/currency:currpair_1
+        networks:
+            - currency
+
+networks:
+    currency:
+        external: true
+    
+    
