@@ -9,8 +9,8 @@ secretkey = str(secretkey)
 
 @app.route('/randompair', methods=['GET'])
 def sentence():
-    fiatfull = requests.get('http://server2:5001/randomfiat')
-    crypfull = requests.get('http://server3:5002/randomcryp')
+    fiatfull = requests.get('http://fiatgen:5001/randomfiat')
+    crypfull = requests.get('http://crypgen:5002/randomcryp')
     fiatfull = fiatfull.text
     crypfull = crypfull.text
 

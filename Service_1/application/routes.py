@@ -5,7 +5,7 @@ import random
 
 @app.route('/', methods=['GET'])
 def home():
-    allinfo = requests.get('http://server4:5003/randompair')
+    allinfo = requests.get('http://currpair:5003/randompair')
     allinfo = allinfo.text
     allinfolist = allinfo.split(":")
     return render_template('index.html', allinfo = allinfolist, title = 'Home')
