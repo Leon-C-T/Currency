@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <title>Random Fiat to Crypto Converter</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body,h1 {font-family: "Raleway", sans-serif}
+        body, html {height: 100%}
+        .bgimg {
+        background-image: url('https://mingmag.com/wp-content/uploads/background2.png');
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+        }
+    </style>
+
+<!-- https://steamuserimages-a.akamaihd.net/ugc/776155680297657535/02F0EABF17FE99701D05F371387381E3DD696C6C/
+https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0tPy76GlsXONKKacN3VPUf5QgXAPsUm7jhOsZGDt17mKhEPDw
+https://c4.wallpaperflare.com/wallpaper/246/601/226/waves-sea-dark-nature-wallpaper-preview.jpg
+https://jllsly.com/wallpapers/dark-green-nature-wallpaper-wide-Is-Cool-Wallpapers.jpg-->
+
+    <body>
+
+    <div class="bgimg w3-display-container w3-animate-opacity"></div>
+
+        <div class="w3-display-topleft w3-padding-large w3-medium w3-text-white">
+            Fiat to Crypto Currency Converter
+        </div>
+
+        <div class="w3-display-middle w3-padding-large">
+            <b><h3 class="w3-animate-top  w3-text-white">
+                <center> 1 {{ allinfo[1] }} ({{ allinfo[0] }}) </center>
+                
+                <center> is currently </center>
+                
+                <center> {{ allinfo[4] }} {{ allinfo[3] }} ({{ allinfo[2] }})  </center>
+            </h3></b>
+       
+        </div>
+        
+        <div class="w3-display-topright">
+            <button class="w3-btn w3-round-large w3-tiny w3-border w3-transparent w3-text-white"  onclick="window.location.reload();">
+                <b>Random Combo!</b>
+            </button>
+        </div>
+        
+        
+
+        <div class="w3-display-bottomleft w3-small w3-padding-large w3-text-white">
+            Website Powered by <a href="" target="_blank">Flask + CryptoCompare</a>
+        </div>
+
+    </div>
+
+    </body>
+</html>

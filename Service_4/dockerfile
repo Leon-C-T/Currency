@@ -1,0 +1,18 @@
+FROM python:latest
+
+RUN apt-get update && apt-get install -y 
+RUN apt-get -y install sudo
+RUN adduser --disabled-password --gecos '' admin
+RUN adduser admin sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+USER admin
+
+RUN pip3 install flask
+RUN pip3 install requests
+COPY ./. /home/admin/Service_4
+
+RUN echo "export secretkey=\"{e6d7c0e2463d6b167b0410f34ecca91e7b4898298fc501e40a77690eaa5febd8}\"" >> ~/.bashrc
+RUN sudo chmod 775 ~/Service_4/app.py
+
+WORKDIR /home/admin/Service_4
+ENTRYPOINT ["python3", "app.py"]
