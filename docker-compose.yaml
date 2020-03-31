@@ -1,34 +1,52 @@
-version: '3'
+version: '3.7'
 services:
     flaskcur:
         build:
             context: ./Service_1
-        image: leonct/currency:flaskcur_1
+        image: leonct/currency:flaskcur_2
+        environment: 
+            - MYSQLHOST=${MYSQLHOST}
+            - MYSQLUSER=${MYSQLUSER}
+            - MYSQLPASSWORD=${MYSQLPASSWORD}
+            - MYSQLDB=${MYSQLDB}
         ports:
             - "5000:5000"
         networks:
-            - currency
+            - cur
+        deploy:
+            replicas: 2
+        
     fiatgen:
         build:
             context: ./Service_2
-        image: leonct/currency:fiatgen_1
+        image: leonct/currency:fiatgen_2
         networks:
-            - currency
+            - cur
+        deploy:
+            replicas: 2
+
     crypgen:
         build:
             context: ./Service_3
-        image: leonct/currency:crypgen_1
+        image: leonct/currency:crypgen_2
         networks:
-            - currency
+            - cur
+        deploy:
+            replicas: 2
+        
     currpair:
         build:
             context: ./Service_4
-        image: leonct/currency:currpair_1
+        image: leonct/currency:currpair_2
+        environment: 
+            - secretkey=${secretkey}
         networks:
-            - currency
+            - cur
+        deploy:    
+            replicas: 2
 
 networks:
-    currency:
+    cur:
         external: true
     
     

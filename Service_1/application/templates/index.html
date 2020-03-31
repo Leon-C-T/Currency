@@ -37,15 +37,29 @@ https://jllsly.com/wallpapers/dark-green-nature-wallpaper-wide-Is-Cool-Wallpaper
                 <center> is currently </center>
                 
                 <center> {{ allinfo[4] }} {{ allinfo[3] }} ({{ allinfo[2] }})  </center>
+
             </h3></b>
-       
+            
+            <center><button class="w3-btn w3-round-large w3-tiny w3-border w3-transparent w3-text-white"  onclick="window.location.reload();">
+                <b>Random Combo!</b>
+            </button></center>
         </div>
         
-        <div class="w3-display-topright">
-            <button class="w3-btn w3-round-large w3-tiny w3-border w3-transparent w3-text-white"  onclick="window.location.reload();">
-                <b>Random Combo!</b>
-            </button>
+        <div class="w3-display-topright w3-text-white">
+            <b><center> Last Five Pairs: </center></b>
+            <br>
+            {% for result in prev_ten %}
+            <tr>
+            <center> {{result[0]}} : {{result[1]}} : {{result[2]}}</center>
+            </tr>
+            {% endfor %} 
         </div>
+        
+        <div class="w3-display-left w3-text-white">
+            
+        </div>
+             
+         
         
         
 
