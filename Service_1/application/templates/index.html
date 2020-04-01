@@ -20,37 +20,84 @@
 <!-- https://steamuserimages-a.akamaihd.net/ugc/776155680297657535/02F0EABF17FE99701D05F371387381E3DD696C6C/
 https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0tPy76GlsXONKKacN3VPUf5QgXAPsUm7jhOsZGDt17mKhEPDw
 https://c4.wallpaperflare.com/wallpaper/246/601/226/waves-sea-dark-nature-wallpaper-preview.jpg
-https://jllsly.com/wallpapers/dark-green-nature-wallpaper-wide-Is-Cool-Wallpapers.jpg-->
+https://jllsly.com/wallpapers/dark-green-nature-wallpaper-wide-Is-Cool-Wallpapers.jpg
+onChange="this.form.submit()
+<script type="text/javascript">
+                        document.getElementById('region').value = "<?php echo $_GET['region'];?>";
+                      </script>-->
 
     <body>
 
-    <div class="bgimg w3-display-container w3-animate-opacity"></div>
+    <div class="bgimg w3-display-container w3-animate-opacity">
 
-        <div class="w3-display-topleft w3-padding-large w3-medium w3-text-white">
-            Fiat to Crypto Currency Converter
+        <div class="w3-display-topleft w3-xlarge w3-padding-large w3-text-white">
+           Fiat / Crypto Currency Converter
         </div>
 
-        <div class="w3-display-middle w3-padding-large">
-            <b><h3 class="w3-animate-top  w3-text-white">
-                <center> 1 {{ allinfo[1] }} ({{ allinfo[0] }}) </center>
-                
-                <center> is currently </center>
-                
-                <center> {{ allinfo[4] }} {{ allinfo[3] }} ({{ allinfo[2] }})  </center>
 
-            </h3></b>
-            
-            <center><button class="w3-btn w3-round-large w3-tiny w3-border w3-transparent w3-text-white"  onclick="window.location.reload();">
-                <b>Random Combo!</b>
-            </button></center>
+
+        <div class="w3-display-left w3-padding-large">
+
+                <form method="POST" action="">
+                    <h5 class=" w3-text-orange ">Options: </h5>
+                    <p class=" w3-text-orange ">({{reg_op}} : {{mode_op}})</p>
+                    <select class="w3-input w3-border w3-transparent w3-text-orange w3-opacity" id="region" name="region" >
+                    <option class="w3-dark-grey w3-text-orange" value="0">Region</option>
+                    <option class="w3-dark-grey w3-text-orange" value="1">Random Region</option>
+                    <option class="w3-dark-grey w3-text-orange" value="2">Europe</option>
+                    <option class="w3-dark-grey w3-text-orange" value="3">Oceania</option>
+                    <option class="w3-dark-grey w3-text-orange" value="4">North America</option>
+                    <option class="w3-dark-grey w3-text-orange" value="5">South America</option>
+                    <option class="w3-dark-grey w3-text-orange" value="6">West and South Asia</option>
+                    <option class="w3-dark-grey w3-text-orange" value="7">North and East Asia</option>
+                    <option class="w3-dark-grey w3-text-orange" value="8">Africa</option>
+                    </select>
+                    
+                    <select class="w3-input w3-border w3-transparent w3-text-orange w3-opacity" id="mode" name="mode" >
+                        <option class="w3-dark-grey w3-text-orange" value="0">Mode</option>
+                        <option class="w3-dark-grey w3-text-orange" value="1">Cryp to Fiat (Default)</option>
+                        <option class="w3-dark-grey w3-text-orange" value="2">Fiat to Cryp</option>
+                        </select>
+
+                    <p><button class="w3-btn w3-round-large w3-transparent w3-text-white w3-opacity w3-tiny w3-border" name="action" value ="specified" type="submit">
+                        <b>Convert</b>
+                        </button>
+                    </p>
+                    <button class="w3-btn w3-round-large w3-opacity w3-tiny w3-border w3-transparent w3-text-white" name="action" value ="random" type="submit" > <!--onclick="window.location.reload();-->
+                        <b>I'm Feeling Crypto!</b>
+                        </button>
+                </form>
+                
         </div>
         
-        <div class="w3-display-topright w3-text-white">
-            <b><center> Last Five Pairs: </center></b>
+
+        <div class="w3-display-middle w3-padding-large   w3-text-white">
+            <b>
+                <h2><center> 1 {{ allinfo[1] }} ({{ allinfo[0] }}) </center></h2>
+                
+                <h6><center> is currently </center></h6>
+                
+                <h2><center> {{ allinfo[4] }} {{ allinfo[3] }} ({{ allinfo[2] }})  </center></h2>
+
+            </b>
+            
+        </div>
+        
+        <div class="w3-display-right w3-text-orange w3-padding-large">
+            <b><center> Last 5 Cryp -> Fiat Pairs: </center></b></h5>
             <br>
-            {% for result in prev_ten %}
-            <tr>
+            {% for result in cryp_fiat %}
+            <tr> 
             <center> {{result[0]}} : {{result[1]}} : {{result[2]}}</center>
+            </tr>
+            {% endfor %} 
+            <br>
+            <br>
+            <b><center> Last 5 Fiat -> Cryp Pairs: </center></b>
+            <br>
+            {% for res in fiat_cryp %}
+            <tr>
+            <center> {{res[1]}} : {{res[0]}} : {{res[2]}}</center>
             </tr>
             {% endfor %} 
         </div>
@@ -64,10 +111,11 @@ https://jllsly.com/wallpapers/dark-green-nature-wallpaper-wide-Is-Cool-Wallpaper
         
 
         <div class="w3-display-bottomleft w3-small w3-padding-large w3-text-white">
-            Website Powered by <a href="" target="_blank">Flask + CryptoCompare</a>
+            Website Powered by Flask +  <a href="https://www.cryptocompare.com/" target="_blank" >CryptoCompare</a>
         </div>
 
     </div>
 
+</div>
     </body>
 </html>

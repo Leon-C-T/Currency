@@ -1,4 +1,5 @@
 from application import app
+from flask import render_template, request
 import requests
 import ast
 import os
@@ -9,8 +10,11 @@ secretkey = str(secretkey)
 
 @app.route('/randompair', methods=['GET'])
 def sentence():
-    fiatfull = requests.get('http://fiatgen:5001/randomfiat')
-    crypfull = requests.get('http://crypgen:5002/randomcryp')
+    region = request.args.get("region")
+    mode = request.args.get("mode")
+    
+    fiatfull = requests.get('http://localhost:5001/randomfiat?region={0}'.format(region)) ##fiatgen (s2)
+    crypfull = requests.get('http://localhost:5002/randomcryp') ##crypgen (s3)
     fiatfull = fiatfull.text
     crypfull = crypfull.text
 
@@ -22,8 +26,19 @@ def sentence():
     crypabv = cryplist[0]
     print(crypabv)
 
+
+    
+    if mode == '1':
+        val_from = crypabv
+        val_to = fiatabv
+        abvpair = crypfull + fiatfull
+    else:
+        val_from = fiatabv
+        val_to = crypabv
+        abvpair = fiatfull + crypfull
+
     baseurl = "https://min-api.cryptocompare.com/data/price?"
-    endurl = "fsym="+crypabv+"&tsyms="+fiatabv
+    endurl = "fsym="+val_from+"&tsyms="+val_to
     apikey = "&api_key="
     url = baseurl+endurl+apikey+secretkey
     print(url)
@@ -36,7 +51,7 @@ def sentence():
         dictlist.append(value)
     value = dictlist[0]
 
-    fullpair = crypfull + fiatfull + str(value)
+    fullpair = abvpair + str(value)
     print(fullpair)
 
     return fullpair
