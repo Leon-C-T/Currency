@@ -20,12 +20,9 @@ def sentence():
 
     fiatlist = fiatfull.split(":")
     fiatabv = fiatlist[0]
-    print(fiatabv)
 
     cryplist = crypfull.split(":")
     crypabv = cryplist[0]
-    print(crypabv)
-
 
     
     if mode == '1':
@@ -41,7 +38,6 @@ def sentence():
     endurl = "fsym="+val_from+"&tsyms="+val_to
     apikey = "&api_key="
     url = baseurl+endurl+apikey+secretkey
-    print(url)
     
     currency = requests.get(url)
     currency = currency.text
@@ -52,6 +48,5 @@ def sentence():
     value = dictlist[0]
 
     fullpair = abvpair + str(value)
-    print(fullpair)
 
     return fullpair

@@ -55,10 +55,7 @@ def home():
     cryptenabv = cryp_fiat[0]     
     fiattenabv =cryp_fiat[1]                                                                                                                                                             
     prices = cryp_fiat[2]             
-    
 
-    
-    
 
     if request.method == "POST":
         if request.form['action'] == 'specified':  
@@ -76,16 +73,15 @@ def home():
 
         if request.form['action'] == 'random':  
             region = 1    
-            mode = random.randrange(1,3,1)
-            print(mode)                                                                                                                                                                                                                                                                                          
+            mode = random.randrange(1,3,1)                                                                                                                                                                                                                                                                                         
    
+
     allinfo = requests.get('http://localhost:5003/randompair?region={0}&mode={1}'.format(region,mode)) ##currpair (s4)
     allinfo = allinfo.text
     allinfolist = allinfo.split(":")
     crypabv = allinfolist[0]
     fiatabv = allinfolist[2]
     price = allinfolist[4]  
-
 
 
     region = int(region)
@@ -104,10 +100,5 @@ def home():
         cur.execute("INSERT INTO fiat2cryp (Fiatname, Crypname, Price) VALUES (%s, %s, %s)", (fiatabv, crypabv, price))                          
         mysql.connection.commit()  
         cur.close()   
-
-
-   
-    print(regiondict.get(region))
-    print(modedict.get(mode))
 
     return render_template('index.html', allinfo = allinfolist, reg_op = reg_op, mode_op = mode_op, fiat_cryp = fiat_cryp, cryp_fiat = cryp_fiat, title = 'Home')
