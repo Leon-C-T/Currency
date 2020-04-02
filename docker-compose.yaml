@@ -3,7 +3,7 @@ services:
     flaskcur:
         build:
             context: ./Service_1
-        image: leonct/currency:flaskcur_3
+        image: leonct/currency:flaskcur_3slim
         environment: 
             - MYSQLHOST=${MYSQLHOST}
             - MYSQLUSER=${MYSQLUSER}
@@ -21,34 +21,34 @@ services:
     fiatgen:
         build:
             context: ./Service_2
-        image: leonct/currency:fiatgen_3
+        image: leonct/currency:fiatgen_3slim
         networks:
             - cur
-        #deploy:    
+        deploy:    
             #mode: global
-            #replicas: 2
+            replicas: 2
 
     crypgen:
         build:
             context: ./Service_3
-        image: leonct/currency:crypgen_3
+        image: leonct/currency:crypgen_3slim
         networks:
             - cur
-        #deploy:    
+        deploy:    
             #mode: global
-            #replicas: 2
+            replicas: 2
         
     currpair:
         build:
             context: ./Service_4
-        image: leonct/currency:currpair_3
+        image: leonct/currency:currpair_3slim
         environment: 
             - secretkey=${secretkey}
         networks:
             - cur
-        #deploy:    
+        deploy:    
             #mode: global
-            #replicas: 2
+            replicas: 2
 
 networks:
     cur:

@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:slim
 
 RUN apt-get update && apt-get install -y 
 RUN apt-get -y install sudo
@@ -7,10 +7,10 @@ RUN adduser admin sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER admin
 
+RUN sudo apt-get install gcc -y
 RUN pip3 install flask
 RUN pip3 install requests
 COPY ./. /home/admin/Service_4
-
 
 RUN sudo chmod 775 ~/Service_4/app.py
 

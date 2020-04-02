@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:slim
 
 RUN apt-get update && apt-get install -y 
 RUN apt-get -y install sudo
@@ -7,9 +7,12 @@ RUN adduser admin sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER admin
 
+RUN sudo apt-get install gcc -y
 RUN pip3 install flask
 RUN pip3 install requests
-RUN sudo apt-get install default-libmysqlclient-dev
+RUN sudo apt-get install libssl-dev -y
+RUN sudo apt-get install default-libmysqlclient-dev -y
+RUN pip3 install mysqlclient
 RUN pip3 install Flask-MySQLdb
 COPY ./. ./home/admin/Service_1
 
