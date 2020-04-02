@@ -12,9 +12,10 @@ secretkey = str(secretkey)
 def sentence():
     region = request.args.get("region")
     mode = request.args.get("mode")
+    crypx = request.args.get("crypx")
     
-    fiatfull = requests.get('http://localhost:5001/randomfiat?region={0}'.format(region)) ##fiatgen (s2)
-    crypfull = requests.get('http://localhost:5002/randomcryp') ##crypgen (s3)
+    fiatfull = requests.get('http://fiatgen:5001/randomfiat?region={0}'.format(region)) ##fiatgen (s2)
+    crypfull = requests.get('http://crypgen:5002/randomcryp?crypx={0}'.format(crypx)) ##crypgen (s3)
     fiatfull = fiatfull.text
     crypfull = crypfull.text
 

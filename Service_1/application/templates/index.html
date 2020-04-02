@@ -41,6 +41,8 @@ onChange="this.form.submit()
                 <form method="POST" action="">
                     <h5 class=" w3-text-orange ">Options: </h5>
                     <p class=" w3-text-orange ">({{reg_op}} : {{mode_op}})</p>
+                    <p class="w3-text-orange"> ({{crypx_op}}) </p>   
+                    
                     <select class="w3-input w3-border w3-transparent w3-text-orange w3-opacity" id="region" name="region" >
                     <option class="w3-dark-grey w3-text-orange" value="0">Region</option>
                     <option class="w3-dark-grey w3-text-orange" value="1">Random Region</option>
@@ -58,9 +60,17 @@ onChange="this.form.submit()
                         <option class="w3-dark-grey w3-text-orange" value="1">Cryp to Fiat (Default)</option>
                         <option class="w3-dark-grey w3-text-orange" value="2">Fiat to Cryp</option>
                         </select>
+                    
+                    <select class="w3-input w3-border w3-transparent w3-text-orange w3-opacity" id="crypx" name="crypx" >
+                        <option class="w3-dark-grey w3-text-orange" value="0">Coin List</option>
+                        <option class="w3-dark-grey w3-text-orange" value="1">Top 10 (Default)</option>
+                        <option class="w3-dark-grey w3-text-orange" value="2">Popular 30</option>
+                        <option class="w3-dark-grey w3-text-orange" value="3">Top 50</option>
+                        <option class="w3-dark-grey w3-text-orange" value="4">Top 100</option>
+                        </select>
 
                     <p><button class="w3-btn w3-round-large w3-transparent w3-text-white w3-opacity w3-tiny w3-border" name="action" value ="specified" type="submit">
-                        <b>Convert</b>
+                        <b>New Pair!</b>
                         </button>
                     </p>
                     <button class="w3-btn w3-round-large w3-opacity w3-tiny w3-border w3-transparent w3-text-white" name="action" value ="random" type="submit" > <!--onclick="window.location.reload();-->
