@@ -1,16 +1,19 @@
 version: '3.7'
+
+networks:
+    cur:
+        driver: overlay
+
 services:
     flaskcur:
         build:
             context: ./Service_1
-        image: leonct/currency:flaskcur_3slim
-        environment: 
-            - MYSQLHOST=${MYSQLHOST}
-            - MYSQLUSER=${MYSQLUSER}
-            - MYSQLPASSWORD=${MYSQLPASSWORD}
-            - MYSQLDB=${MYSQLDB}
+        image: leonct/currency:flaskcur_latest
+        container_name: flaskcur
+        env_file:
+            - ./keys.env
         ports:
-            - "5000:5000"
+            - "5000"
         networks:
             - cur
         #deploy:    
@@ -21,7 +24,8 @@ services:
     fiatgen:
         build:
             context: ./Service_2
-        image: leonct/currency:fiatgen_3slim
+        image: leonct/currency:fiatgen_latest
+        container_name: fiatgen
         networks:
             - cur
         deploy:    
@@ -31,7 +35,8 @@ services:
     crypgen:
         build:
             context: ./Service_3
-        image: leonct/currency:crypgen_3slim
+        image: leonct/currency:crypgen_latest
+        container_name: crypgen
         networks:
             - cur
         deploy:    
@@ -41,17 +46,32 @@ services:
     currpair:
         build:
             context: ./Service_4
-        image: leonct/currency:currpair_3slim
-        environment: 
-            - secretkey=${secretkey}
+        image: leonct/currency:currpair_latest
+        container_name: currpair
+        env_file:
+            - ./keys.env
         networks:
             - cur
         deploy:    
             #mode: global
             replicas: 2
 
-networks:
-    cur:
-        external: true
+    nginxcur:
+        build:
+            context: ./nginx
+        image: leonct/currency:nginxcur_latest
+        container_name: nginxcur
+        ports: 
+            - 80:80
+        networks:
+            - cur
+        depends_on:
+            - flaskcur
+            - fiatgen
+            - crypgen
+            - currpair
+        #deploy:    
+            #mode: global
+            #replicas: 2
     
     

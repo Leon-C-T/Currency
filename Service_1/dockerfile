@@ -16,7 +16,6 @@ RUN pip3 install mysqlclient
 RUN pip3 install Flask-MySQLdb
 COPY ./. ./home/admin/Service_1
 
-EXPOSE 5000
 RUN sudo chmod 775 ~/Service_1/app.py
 WORKDIR /home/admin/Service_1
 ENTRYPOINT ["python3", "app.py"]
