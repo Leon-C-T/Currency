@@ -8,20 +8,29 @@ pipeline{
                 sh './script/before_installation.sh' //use dot to run something
                 sh 'echo "Before Installation Commands Complete"'
                 sh 'sleep 2'
+                sh './script/docker_install.sh'
+                sh 'echo "Docker Jenkins Install Complete"'
+                sh 'sleep 1'
+                sh './script/ansible_install.sh'
+                sh 'echo "Ansible Jenkins Install Complete"'
+                sh 'sleep 1'
                 sh './script/installation.sh'
                 sh 'echo "Installation Commands Complete"'
                 sh 'sleep 2'
-                sh './script/buildservices.sh'                
-                sh 'echo "Services Built Successfully"'
-                sh 'sleep 2'       
+                sh 'sudo docker-compose up -d'
+                sh 'echo "Installation Commands Complete"'
+                sh 'sleep 2'
+                //sh './script/buildservices.sh'                
+                //sh 'echo "Services Built Successfully"'
+                //sh 'sleep 2'       
             }
         }
 
-        stage('Testing Environment'){
-            steps{
-                sh './script/testing.sh'
-                sh 'echo "Testing completed Successfully"'
-            }
-        }
+        //stage('Testing Environment'){
+            //steps{
+            //    sh './script/testing.sh'
+            //    sh 'echo "Testing completed Successfully"'
+            //}
+        //}
     }
 }
