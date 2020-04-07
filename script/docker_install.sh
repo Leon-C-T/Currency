@@ -10,7 +10,7 @@ sudo apt-get update
 
 apt-cache policy docker-ce
 
-sudo apt install docker-ce
+sudo apt install docker-ce -y
 
 sudo systemctl status docker
 
