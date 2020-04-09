@@ -90,7 +90,7 @@ def home():
         if request.form['action'] == 'random':  
             region = 1    
             mode = random.randrange(1,3,1) 
-            crypx = random.randrange(1,6,1)                                                                                                                                                                                                                                                                                        
+            crypx = random.randrange(1,5,1)                                                                                                                                                                                                                                                                                        
    
 
     allinfo = requests.get('http://currpair:5003/randompair?region={0}&mode={1}&crypx={2}'.format(region,mode,crypx)) ##currpair (s4)

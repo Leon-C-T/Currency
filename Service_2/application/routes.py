@@ -12,7 +12,7 @@ def fiat():
 
     list = []
 
-    if region == 1:         ## No Region Selected (Random)
+    if region == 0 or region == 1:         ## No Region Selected (Random)
         with open('fiatfiles/fiatfull.csv', 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
             for line in csv_reader:

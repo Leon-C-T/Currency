@@ -11,7 +11,7 @@ def crypto():
 
     list = []
 
-    if crypx == 1:         ## Top 10 Coins
+    if crypx == 0 or crypx == 1:            ## Top 10 Coins
         with open('crypfiles/crypten.csv', 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
             for line in csv_reader:
