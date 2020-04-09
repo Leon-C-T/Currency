@@ -19,7 +19,7 @@ pipeline{
                 sh 'sleep 2'
                 sh './script/run.sh'
                 sh 'echo "Curstack Swarm Built Successfully"'
-                sh 'sleep 2'  
+                sh 'sleep 5'  
             }
         }
 
