@@ -3,21 +3,26 @@ from flask import render_template, request
 import random
 import csv
 
+####################################### Start of App Route for Service 2 (fiatgen) #######################################
+
 @app.route('/randomfiat', methods=['GET'])
 def fiat():
 
+## Gets URL Variable for Region from Service 4 (As selected by User in Service 1):
 
     region = request.args.get("region")
     region = int(region)
 
     list = []
 
-    if region == 0 or region == 1:         ## No Region Selected (Random)
-        with open('fiatfiles/fiatfull.csv', 'r') as csv_file:
-            csv_reader = csv.reader(csv_file)
-            for line in csv_reader:
-                x = line
-                list.append(x)
+### List Population:
+
+    if region == 0 or region == 1:                            ## No Region Selected (Random)
+        with open('fiatfiles/fiatfull.csv', 'r') as csv_file: ## Opens File in read mode
+            csv_reader = csv.reader(csv_file)                 ## Read File 
+            for line in csv_reader:                           ## Selects Line
+                x = line                                      
+                list.append(x)                                ## Populates list with all data in file (All Fiat currencies in File)
 
     elif region == 2:       ## European Region 
         with open('fiatfiles/fiateur.csv', 'r') as csv_file:
@@ -70,14 +75,15 @@ def fiat():
 
     
 
-    num = len(list)
-    fiatchosen = list[random.randrange(num)]
+    num = len(list)                             ## Returns length of list and assign to variable
+    fiatchosen = list[random.randrange(num)]    ## Randomly selects a fiat currency from the list
 
-    fiatstring =""
-    for i in fiatchosen:
-        fiatstring = fiatstring + i + ":"
+### Creates String to Return back to Service 4 ###
 
-    print(fiatstring)
+    fiatstring =""                              
+    for i in fiatchosen:                        
+        fiatstring = fiatstring + i + ":"       ### Generates String in Format -> Fiat ABV : Full Name of Fiat e.g. GBP:Great Britian Pound
+
     
     return fiatstring
 
