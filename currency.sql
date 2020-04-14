@@ -15,3 +15,10 @@ CREATE table fiat2cryp(
     Fiatname VARCHAR(10) NOT NULL,
     Price DECIMAL(15,10) NOT NULL
 );
+
+CREATE table currencylist(
+    Cur_ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+    Crypname VARCHAR(10) NOT NULL,
+    Fiatname VARCHAR(10) NOT NULL,
+    Price DECIMAL(15,10) NOT NULL
+);
