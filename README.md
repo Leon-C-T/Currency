@@ -17,7 +17,9 @@ For SFIA project 2
    * [Issues during the 2 Sprints](#sprissues)
 
 [Risk Assessment](#risk)
-   
+   * [Initial Risk Assessment and Matrix](#initialrisk)
+   * [Final Updates to Risk Assessment and Matrix](#finalrisk)
+
 [Project Architecture](#architecture)
    * [Entity Relationship Diagrams](#erd)
    * [Docker Swarm / UI Architecture](#dockerarch)
@@ -28,6 +30,17 @@ For SFIA project 2
 
 [Testing](#test)
    * [Pytest](#pytest)
+
+[Deployment](#Deployment)
+   * [Technology Used](#techused)
+   * [Installation Guide](#install)
+
+[Retrospective](#retrospec)
+   * [What Went Well](#wentwell)
+   * [Future Improvements](#futureimp)
+
+[Author](#auth)
+
 
 <a name="brief"></a>
 ## Project Brief
@@ -145,6 +158,24 @@ By the end of Sprint 2 the key requirements as well as some optional requirement
 <a name="risk"></a>
 ## Risk Assessment
 
+<a name="initialrisk"></a>
+### Initial Risk Assessment and Matrix
+
+Shown below is the intial risk assessment and accompanying matrix for the project:
+
+![Initial RA](/images/initialrisk.png)
+
+![Initial Matrix](/images/initialmatrix.png)
+
+<a name="finalrisk"></a>
+### Final Updates to Risk Assessment and Matrix
+
+Shown below are additions to the risk assessment and matrix after completing the project and encountering a further number of issues:
+
+![Final RA](/images/finalrisk.png)
+
+![Final Matrix](/images/finalmatrix.png)
+
 <a name="Architecture"></a>
 ## Project Architecture
 
@@ -215,4 +246,67 @@ The coverage report is shown below:
 ![Coverage Report](/images/coverage.png)
 
 The coverage is 99% because none of the routes are being tested, the database functionality of the routes are being mimicked in the testing.py file
+
+<a name="Deployment"></a>
+## Deployment
+
+<a name="techused"></a>
+### Technology Used
+
++ 3 GCP VM Instances
++ 1 GCP SQL Server for storing Data
++ Jenkins Pipeline for CI/CD with Github Webhooks
++ Testing using Pytest
++ Ansible to configure the environment of deployment VM's
++ Docker to Containerise the application
++ Docker Swarm (and Compose) To run the Application across multiple VM's
++ Nginx as a reverse proxy
++ Docker Hub as a Version Control Service for Docker Images
++ GitHub as a Version Control Service for the Applications Code
+    + Feature Branch Model implemented - Master / Developer Branches
+    + Master Branch used to Build Docker Images automatically with Webhooks as well as Webhook with Jenkins
+    + Developer Branch used to write out code and fix bugs in application
+
+<a name="install"></a>
+### Installation Guide
+
+1. Setup 3 VM's on GCP with Ubuntu 18.04 LTS
+2. Setup SSH keys for the 3 VM's and store in a config file in a .ssh folder
+3. Install Jenkins on one GCP VM Instance to be used as a Jenkins Test Server. Expose TCP port 8080 in firewall rules
+4. Add Jenkins to sudoers group
+5. Setup Jenkins pipeline with Webhooks 
+6. Copy over .ssh folder to root of jenkins directory as well as Ansible Playbook + inventory and keys.env files to working directory in Jenkins for Pipeline. e.g. var/lib/jenkins/workspace/currencyswarm
+7. Add required Docker Swarm ports to Firewall Rules of all VM's: TCP 2376, 2377 and 7946, UDP 4789, and 7946.
+8. Request build on Jenkins Pipeline.
+9. Scripts should install all dependencies needed for Jenkins to run Swarm stack on Jenkins VM. Ansible Playbook will configure deployment VM's with software needed to ensure application Runs.
+
+<a name="retrospec"></a>
+## Retrospective
+
+<a name="wentwell"></a>
+### What Went Well
+
++ Project completed withing timeframe
++ All 'Must Have' Requirements Met
++ Docker, Ansible and Jenkins all Successfully Integrated into a continuous pipeline
++ Application deployed across multiple VM's
+
+<a name="futureimp"></a>
+### Future Improvements:
+
++ Implement Telegram API to enable Chatbot like Functionality
++ Implement Selenium for Front End Testing
++ Implement a 'percentage change' feature that show the percentage change of the price since the last time it appeared
++ Deploy application to more worker nodes
++ Incorporate a second manager node in Swarm to ensure System reliability
+
+A Trello Board was made to show what a future sprint could look like to implement these improvements, as shown below:
+
+![Future Kanban Board](/images/futuresprint.png)
+
+<a name="auth"></a>
+## Author
+
+Leon Cresswell Thallapally
+
 
