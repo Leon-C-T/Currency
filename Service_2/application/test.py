@@ -14,4 +14,6 @@ with open('fiatcur.csv', 'r') as csv_file:
     print(list)
     print(y)
 
+    #Testing File
+
 
