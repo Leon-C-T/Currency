@@ -180,7 +180,7 @@ The Pipeline used for deployment is represented as a diagram shown below. The En
 
 The Toolchain Pipeline is shown below: 
 
-![Toolchain Pipeline](/images/toolchain.png)
+![Toolchain Pipeline](/images/Toolchain.png)
 
 <a name="finalapp"></a>
 ## Final Application
