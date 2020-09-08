@@ -70,6 +70,7 @@ services:
             - fiatgen
             - crypgen
             - currpair
+        restart: on-failure:10
         #deploy:    
             #mode: global
             #replicas: 2

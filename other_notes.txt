@@ -1,0 +1,7 @@
+To add Jenkins to sudoers group:
+#1) sudo vi  /etc/sudoers
+#2) Look for the entry for jenkins user. Modify as below if found or add a new line.
+    jenkins ALL=(ALL) NOPASSWD: ALL
+#3) :wq!
+
+May need to run build once to get currencyswarm folder created on Jenkins server
